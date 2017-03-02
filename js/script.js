@@ -92,11 +92,18 @@ $ajaxUtils.sendGetRequest(
 });
 // *** finish **
 
-var categories = ["categoriesTitleHtml", "categoryHtml", "menuItemsUrl", "menuItemsTitleHtml"];
+
 // Builds HTML for the home page based on categories array
 // returned from the server.
-function buildAndShowHomeHTML (categories) {
-
+dc.loadMenuCategories = function () {
+  showLoading("#main-content");
+  $ajaxUtils.sendGetRequest(
+    allCategoriesUrl,
+    buildAndShowCategoriesHTML);
+};
+  
+  function buildAndShowHomeHTML (categories) {
+  var categories = ["categoriesTitleHtml", "categoryHtml", "menuItemsUrl", "menuItemsTitleHtml"];
   // Load home snippet page
   $ajaxUtils.sendGetRequest(
     homeHtmlUrl,
